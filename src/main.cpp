@@ -192,7 +192,11 @@ void setup()
     xTaskCreate(WiFiTask, "WiFiTask", 16384, NULL, 1, &wifiTaskHandle);
     xTaskCreate(TimeTask, "TimeTask", 16384, NULL, 1, &timeTaskHandle);
 
+#ifdef ESP32C3_SUPERMINI
+    Wire.begin(8, 9, RTC_I2C_ADDRESS);
+#else
     Wire.begin(RTC_I2C_ADDRESS);
+#endif
     Wire.onReceive(receiveEvent);
     Wire.onRequest(requestEvent);
 }

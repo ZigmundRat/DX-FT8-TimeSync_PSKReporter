@@ -1,6 +1,6 @@
 
 set -e 
 
-pio run -t upload -e lolin_s2_mini
+pio run -t upload -e esp32c3_supermini
 sleep 2
-pio device monitor -e lolin_s2_mini
+pio device monitor -e esp32c3_supermini
