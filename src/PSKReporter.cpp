@@ -231,6 +231,14 @@ bool PskReporter::send()
         written = wifiUdp.write((const uint8_t *)packet.c_str(), size);
         wifiUdp.endPacket();
         wifiUdp.stop();
+        if (written != size)
+        {
+            Serial.printf("PSKReporter: Failed to send all data, sent %u of %u bytes\n", (unsigned)written, (unsigned)size);
+        }
+    }
+    else
+    {
+        Serial.println("WiFi not connected, cannot send PSKReporter data");
     }
     return written > 0;
 }
